@@ -1,25 +1,28 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 import '../pages/login.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
   void initState() {
     super.initState();
     SplashScreenStart();
   }
 
+  // ignore: non_constant_identifier_names
   SplashScreenStart() async {
     var duration = const Duration(seconds: 3);
     return Timer(duration, () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     });
   }
@@ -27,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 211, 31, 31),
+      backgroundColor: const Color.fromARGB(255, 211, 31, 31),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,10 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 200,
               height: 200,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
-            Text(
+            const Text(
               "ERLANGREPORTS",
               style: TextStyle(
                 color: Colors.white,
@@ -49,10 +52,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 fontSize: 30.0,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 1.0,
             ),
-            Text(
+            const Text(
               "Connecting Innovation",
               style: TextStyle(
                 color: Colors.white,

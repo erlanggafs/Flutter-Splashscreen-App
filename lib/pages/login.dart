@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../pages/home.dart';
-import '../pages/splashscreen.dart';
-
+import '../pages/register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,13 +10,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   bool isHiddenPassword = true;
   bool a = false;
+  bool obs = false;
 
   @override
   Widget build(BuildContext context) {
-   final height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -30,9 +29,9 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 height: height / 2.5,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 211, 31, 31),
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(100),
                   ),
                 ),
@@ -97,22 +96,32 @@ class _LoginPageState extends State<LoginPage> {
                                   icon: Icons.email_outlined),
                             ),
                             const SizedBox(height: 16),
-                            SizedBox(
-                              height: 40,
-                              child:
-                              Input(
-                                  hint: 'Password',
-                                  icon:(Icons.visibility),
-                                    ),
+                            TextFormField(
+                              obscureText: obs,
+                              decoration: InputDecoration(
+                                suffixIcon: obs == true ? InkWell(
+                                  onTap: (){
+                                    setState(() {
+                                      obs = !obs;
+                                    });
+                                  },
+                                  child: const Icon(Icons.visibility_off)): InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        obs = !obs;
+                                      });
+                                    },
+                                    child: const Icon(Icons.visibility))
+                              ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             MaterialButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(31)),
                               height: 40,
-                              color: Color.fromARGB(255, 211, 31, 31),
+                              color: const Color.fromARGB(255, 211, 31, 31),
                               onPressed: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -125,7 +134,29 @@ class _LoginPageState extends State<LoginPage> {
                                     fontWeight: FontWeight.w700),
                               ),
                             ),
-                          ],
+                            const SizedBox(
+                              height: 20,
+                              child:
+                               Text('OR', textAlign: TextAlign.center,),
+                            ),
+                            MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(31)),
+                              height: 40,
+                              color: const Color.fromARGB(255, 236, 236, 236),
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const RegisterPage())),
+                              child: const Text(
+                                'Create an Account',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ]
                         ),
                       ),
                     ],
@@ -162,10 +193,10 @@ class Input extends StatelessWidget {
           ),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(26),
-              borderSide: BorderSide(color: Colors.red)),
-          focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.red)),
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red),
-            borderRadius: const BorderRadius.all(Radius.circular(26)),
+            borderRadius: BorderRadius.all(Radius.circular(26)),
           ),
           suffixIcon: Icon(icon)),
     );
